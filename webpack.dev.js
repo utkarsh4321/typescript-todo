@@ -4,7 +4,9 @@ const MiniCssPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
+  mode: "development",
   entry: "./src/js/index.ts",
+  devtool: "eval-source-map",
 
   module: {
     rules: [
@@ -17,7 +19,7 @@ module.exports = {
         // },
 
         use: [
-          MiniCssPlugin.loader,
+          "style-loader",
           "css-loader",
 
           {
@@ -52,19 +54,19 @@ module.exports = {
   devServer: {
     contentBase: "./public",
   },
+
   plugins: [
     new HtmlWebpackPlugin({
-      filename: "index.html",
-      template: "./src/index.html",
+      template: "./src/template.html",
     }),
     new MiniCssPlugin({
       filename: "[name].[hash].css",
     }),
-    new CleanWebpackPlugin(),
+    // new CleanWebpackPlugin(),
   ],
   output: {
     // publicPath: "public",
-    filename: `[name].bundle[hash].js`,
+    filename: `[name].bundle.js`,
     path: path.resolve(__dirname, "public"),
   },
 };
