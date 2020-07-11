@@ -1,5 +1,8 @@
 $bg_color: red;
-
 body {
-  background-color: $bg_color;
+  background: $bg_color;
+  color: green;
+}
+h1 {
+  color: blueviolet;
 }
