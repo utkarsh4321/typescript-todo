@@ -39,6 +39,16 @@ module.exports = {
         use: "ts-loader",
         include: [path.resolve((__dirname, "src"))],
       },
+      {
+        test: /\.(svg|png|jpg|gif)$/,
+        use: {
+          loader: "file-loader",
+          options: {
+            name: "[name].[hash].[ext]",
+            outputPath: "imgs",
+          },
+        },
+      },
       // {
       //   test: /\.js$/,
       //   exclude: /node_modules/,
@@ -52,7 +62,8 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js"],
   },
   devServer: {
-    contentBase: "./public",
+    contentBase: path.join(__dirname, "src"),
+    compress: true,
   },
 
   plugins: [
